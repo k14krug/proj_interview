@@ -548,6 +548,51 @@ Route conventions:
   - Files likely touched: AI service logging, worker/job logging utilities.
   - Risks: under-logged failures are hard to diagnose post hoc.
 
+### PH-08-04 [ ] Implement AI usage ledger and configurable cost-calculation primitives
+- Owner: unassigned
+- Priority: high
+- Depends on: `docs/architecture/DATA_MODEL.md`, `docs/product/REQUIREMENTS.md`
+- Requirement Links: `FR-016C`, `FR-037`, `FR-038`, `FR-039`, `FR-040`, `FR-041`, `NFR-003`, `NFR-004`
+- Route Links: `N/A`
+- Scope:
+  - Add per-call AI usage ledger persistence for all AI operations with user, UTC timestamp, operation name, model, tokens, and provider request/trace identifiers when available.
+  - Implement configurable pricing-map loading and deterministic per-call cost calculation based on the model actually used.
+  - Provide daily aggregation primitives grouped by user and model.
+- Acceptance Criteria:
+  - Every AI call site writes one usage ledger record with required fields.
+  - Cost calculation uses pricing configuration data (no hard-coded model prices).
+  - Daily aggregation by user and model is deterministic and test-covered.
+- Test Requirements:
+  - Add tests for ledger write-path coverage across AI operations.
+  - Add tests for pricing-map resolution and per-call cost computation.
+  - Add tests for user-scoped per-day aggregation correctness.
+- Memory Bank:
+  - Context: accurate reporting depends on standardized call-site telemetry introduced in `PH-08-03`.
+  - Files likely touched: AI service wrapper, usage ledger persistence, pricing config loader, aggregation service layer.
+  - Risks: missing instrumentation on one call path leads to under-reported cost.
+
+### PH-08-05 [ ] Surface per-user daily API cost totals and by-model breakdown in Preferences
+- Owner: unassigned
+- Priority: high
+- Depends on: `PH-08-04`, `docs/architecture/ROUTES_V1.md`, `docs/architecture/UI_V1.md`
+- Requirement Links: `FR-035`, `FR-036`, `FR-040`, `FR-041`
+- Route Links: `RT-04`
+- Scope:
+  - Add a usage-cost section to `RT-04` Preferences showing daily total and by-model breakdown for the authenticated user.
+  - Apply presentation-time timezone conversion only (storage/query in UTC).
+  - Include optional token/call metrics where available from the same ledger records.
+- Acceptance Criteria:
+  - Preferences route renders daily total cost and by-model rows for the current user only.
+  - No cross-user usage/cost data is returned or rendered.
+  - Displayed day boundaries follow presentation timezone while stored timestamps remain UTC.
+- Test Requirements:
+  - Add integration tests for `RT-04` cost panel rendering and user isolation.
+  - Add tests for timezone presentation behavior over UTC-stored usage records.
+- Memory Bank:
+  - Context: product guidance prefers reusing V1 routes; Preferences is the canonical placement for usage/cost visibility.
+  - Files likely touched: preferences route handler, preferences template partials, usage aggregation query/service.
+  - Risks: timezone-boundary errors can shift spend into the wrong display day.
+
 ---
 
 ## Execution Phase 09

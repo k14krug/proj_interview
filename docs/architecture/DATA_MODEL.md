@@ -300,6 +300,72 @@ Indexes/constraints:
 
 ---
 
+### 3.12 ai_usage_ledger
+
+Per-call OpenAI usage ledger used for deterministic cost accounting and daily reporting.
+
+| Field | Type | Notes |
+|------|------|------|
+| id | PK | |
+| user_id | FK → users.id | Required for user isolation |
+| occurred_at | DATETIME (UTC) | Provider call timestamp in UTC |
+| operation_name | VARCHAR(128) | e.g., long_form_generation, summary, citation_validation |
+| provider_name | VARCHAR(64) | e.g., openai |
+| model_name | VARCHAR(128) | Actual model used for the call |
+| input_tokens | INT | Nullable |
+| output_tokens | INT | Nullable |
+| total_tokens | INT | Nullable |
+| provider_request_id | VARCHAR(128) | Nullable |
+| trace_id | VARCHAR(128) | Nullable |
+| pricing_version | VARCHAR(64) | Identifies pricing config snapshot used for cost computation |
+| input_cost_usd | DECIMAL(14,8) | Nullable; computed from pricing map |
+| output_cost_usd | DECIMAL(14,8) | Nullable; computed from pricing map |
+| total_cost_usd | DECIMAL(14,8) | Nullable; deterministic per-call total |
+| created_at | DATETIME (UTC) | |
+
+Indexes/constraints:
+- Index: `user_id`
+- Index: `occurred_at`
+- Index: (`user_id`, `occurred_at`)
+- Index: (`user_id`, `occurred_at`, `model_name`)
+- Index: (`user_id`, `operation_name`, `occurred_at`)
+- Index: `provider_request_id`
+
+Notes:
+- `total_cost_usd` should be deterministic from `model_name`, token fields, and `pricing_version`.
+- Multiple calls may share the same `operation_name`; each call must produce one ledger row.
+
+---
+
+### 3.13 ai_model_pricing
+
+Configurable pricing table used by cost calculation logic.
+
+| Field | Type | Notes |
+|------|------|------|
+| id | PK | |
+| provider_name | VARCHAR(64) | e.g., openai |
+| model_name | VARCHAR(128) | |
+| input_usd_per_1m_tokens | DECIMAL(14,6) | Required |
+| output_usd_per_1m_tokens | DECIMAL(14,6) | Required |
+| effective_from | DATETIME (UTC) | |
+| effective_to | DATETIME (UTC) | Nullable |
+| pricing_version | VARCHAR(64) | Version key for deterministic replay |
+| is_active | BOOLEAN | Default true |
+| created_at | DATETIME (UTC) | |
+| updated_at | DATETIME (UTC) | |
+
+Indexes/constraints:
+- Unique composite: (`provider_name`, `model_name`, `effective_from`)
+- Index: (`provider_name`, `model_name`, `is_active`)
+- Index: `pricing_version`
+
+Notes:
+- Pricing updates are data/config changes and must not require code changes.
+- Cost calculation should resolve pricing by (`provider_name`, `model_name`, `occurred_at`).
+
+---
+
 ## 4. Relationship Summary (Corrected)
 
 - `users` 1:1 `user_preferences`
@@ -311,6 +377,7 @@ Indexes/constraints:
 - `generated_articles` M:N `raw_articles` via `generated_article_sources`
 - `generated_articles` 1:M `generated_article_citations`
 - `briefings` M:N `generated_articles` via `briefing_articles` (same-user join enforced by composite FKs)
+- `users` 1:M `ai_usage_ledger`
 
 ---
 
@@ -324,7 +391,8 @@ Indexes/constraints:
 6. Worker processes generation (`running` → `success`/`failed`) and stores prompt+response+metadata
 7. Lineage recorded → `generated_article_sources` (on successful generation)
 8. Citation provenance recorded → `generated_article_citations` (source link required; excerpt optional in V1)
-9. User compiles a Daily Brief → `briefings` + `briefing_articles` (same `user_id` required)
+9. Each AI provider call appends one row to `ai_usage_ledger` using the resolved `ai_model_pricing` version
+10. User compiles a Daily Brief → `briefings` + `briefing_articles` (same `user_id` required)
 
 ---
 
@@ -343,6 +411,9 @@ High-impact indexes for V1:
 - `briefing_articles.briefing_id`
 - `job_runs(job_name, scheduled_for)` (unique)
 - `generated_article_citations.generated_article_id`
+- `ai_usage_ledger(user_id, occurred_at)`
+- `ai_usage_ledger(user_id, occurred_at, model_name)`
+- `ai_model_pricing(provider_name, model_name, is_active)`
 
 ---
 

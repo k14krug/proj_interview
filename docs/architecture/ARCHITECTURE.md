@@ -155,6 +155,9 @@ Responsibilities:
 - Build prompts with strict source list and citation requirements
 - Call OpenAI API
 - Store prompt + response + metadata
+- Select model by operation type (for example, generation vs summary/citation operations)
+- Write one usage-ledger record per AI call (user, UTC timestamp, operation, model, tokens, provider request/trace ids)
+- Compute per-call and per-day costs from a configurable model pricing map (no hard-coded pricing constants)
 - Apply accuracy-over-length policy and low-information generation mode when source depth is limited
 - Validate citation mapping
 - Persist citation provenance records for audit UI

@@ -47,8 +47,8 @@ Notes:
 
 ### RT-04 Preferences View/Update
 - Method/Path: `GET /preferences`, `POST /preferences`
-- Purpose: View/update user topic/source preferences.
-- Requirement Links: `FR-002`, `FR-003`
+- Purpose: View/update user topic/source preferences and show user-scoped daily API usage cost reporting.
+- Requirement Links: `FR-002`, `FR-003`, `FR-035`, `FR-036`, `FR-040`, `FR-041`
 
 ### RT-05 Cluster List
 - Method/Path: `GET /clusters`

@@ -184,6 +184,11 @@ Required behavior:
 
 ### RT-04 Preferences View/Update
 - Shows editable topic/source preference controls.
+- Shows a user-scoped API usage cost panel with:
+  - daily total cost
+  - by-model daily breakdown (minimum: model + cost)
+  - optional token/call columns when usage records provide them
+- Uses UTC-backed timestamps converted to the active display timezone at render time.
 - Save action confirms persistence and reflects latest values.
 
 ### RT-05 Cluster List

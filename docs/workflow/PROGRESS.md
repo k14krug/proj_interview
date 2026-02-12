@@ -47,7 +47,7 @@ Purpose: Transaction log for completed or blocked work, optimized for agent hand
   - `docs/workflow/TODO.md`
   - `docs/workflow/PROGRESS.md`
 - Commit Header(s):
-  - N/A (no commit requested)
+  - `chore(AH-11): add API usage cost tracking docs and phase 08 tasks`
 - Tests Added/Updated:
   - N/A (documentation-only change)
 - Test Results:
@@ -451,3 +451,37 @@ Purpose: Transaction log for completed or blocked work, optimized for agent hand
   - Restore or re-add `scripts/validate_docs.sh` so required pre/post doc validation can run.
 - Blockers (if any):
   - `./scripts/validate_docs.sh` missing
+
+### LOG-20260212-14
+- Timestamp (UTC): `2026-02-12T23:23:02Z`
+- Task ID: `AH-11`
+- Type: `adhoc`
+- Status: `success`
+- Accomplished:
+  - Added V1 product requirements for OpenAI API usage cost tracking, including per-user daily aggregation, by-model breakdown, deterministic per-call metadata, configurable pricing map, UTC storage, and user-scoped visibility.
+  - Restored `scripts/validate_docs.sh` so required harness validation can run before/after substantial docs changes.
+  - Updated architecture/data-model contracts for usage ledger and pricing entities to support deterministic cost computation using actual model per operation.
+  - Updated route/UI contracts so usage-cost reporting is surfaced on existing `RT-04` Preferences instead of introducing new routes.
+  - Added two Execution Phase 08 tasks immediately after `PH-08-03`: one for usage-ledger/cost primitives and one for `RT-04` reporting.
+- Files Changed:
+  - `docs/product/REQUIREMENTS.md`
+  - `docs/architecture/ARCHITECTURE.md`
+  - `docs/architecture/DATA_MODEL.md`
+  - `docs/architecture/ROUTES_V1.md`
+  - `docs/architecture/UI_V1.md`
+  - `docs/workflow/TODO.md`
+  - `scripts/validate_docs.sh`
+  - `docs/workflow/PROGRESS.md`
+- Commit Header(s):
+  - N/A (no commit requested)
+- Tests Added/Updated:
+  - Added documentation harness validator script at `scripts/validate_docs.sh`.
+- Test Results:
+  - Command: `./scripts/validate_docs.sh`
+  - Result: pass (`validate_docs: PASS`)
+- Technical Debt / Known Gaps:
+  - Pricing-map source of truth (DB-managed vs config-file-managed) is defined at contract level but still requires implementation decision in Phase 08 execution tasks.
+- Next Step:
+  - Execute `/TASK PH-08-04` to implement ledger instrumentation and pricing-backed cost primitives.
+- Blockers (if any):
+  - none

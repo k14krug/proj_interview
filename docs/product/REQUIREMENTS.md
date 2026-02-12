@@ -28,6 +28,7 @@ V1 delivers:
 - Automatic grouping of similar stories into **Event Clusters**
 - Human-in-the-loop article selection
 - AI-generated long-form news articles (target 800–1200 words; see FR-016)
+- API usage cost tracking per user/day/model for OpenAI calls
 - Structured 1–2 sentence summary bullets per article
 - Multi-user support from day one
 - Immutable generated content (articles + briefings)
@@ -94,6 +95,7 @@ FR-015: A user shall be able to select one or more source articles.
 FR-016: The system shall generate a synthetic article using only the selected source articles.
 FR-016A: Prompt policy shall prioritize factual accuracy over target length.
 FR-016B: The generation service shall support a low-information mode when source depth is limited, producing a concise article instead of speculative filler.
+FR-016C: AI operations may use different models by operation type, and the selected model must be recorded per call.
 
 Length rule:
 - Target 800–1200 words when sufficient source text exists.
@@ -135,6 +137,16 @@ FR-031: The UI shall show a processing state and poll for completion rather than
 FR-032: V1 shall provide a Synthesis Audit view for generated articles that maps each citation to its source article URL.  
 FR-033: V1 shall store citation provenance excerpts when available and display them in the audit view as supporting evidence.  
 FR-034: When excerpt provenance is unavailable, the audit view shall explicitly label the citation as source-linked without excerpt verification.
+
+### 5.11 API Usage Cost Tracking
+
+FR-035: The system shall calculate and expose OpenAI API usage cost per authenticated user, aggregated by day.  
+FR-036: The system shall display a daily cost total and a by-model daily breakdown (minimum fields: model name and cost; token/call counts optional when available from the same records).  
+FR-037: Cost accounting shall reflect the actual model used per AI call across operation types.  
+FR-038: The system shall record per-call usage metadata sufficient for deterministic cost calculation, including: `user_id`, UTC timestamp, operation name, model name, token usage (`input/output/total` when available), and provider request/trace identifier when available.  
+FR-039: The system shall use a configurable pricing map (`model -> input/output price`) so pricing changes do not require code changes.  
+FR-040: Usage/cost timestamps shall be stored in UTC; timezone conversion shall occur only at presentation.  
+FR-041: Usage and cost visibility shall be user-scoped; users shall not see other users’ usage or costs.
 
 ---
 
@@ -192,4 +204,5 @@ V1 is complete when:
 - Background jobs enforce at-most-once execution per schedule slot in production.
 - Generation UI provides `queued/running/success/failed` visibility without long-request timeout failures.
 - Generated articles expose a Synthesis Audit view with citation-to-source mapping.
+- Preferences view exposes per-user daily API cost totals with by-model breakdown.
 - System is accessible externally via Cloudflare Tunnel.
