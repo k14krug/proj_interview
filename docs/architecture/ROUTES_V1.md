@@ -25,6 +25,26 @@ Detailed screen/layout behavior is defined in `docs/architecture/UI_V1.md`.
 - Purpose: End authenticated session.
 - Requirement Links: `FR-001`
 
+### RT-15 User Registration View
+- Method/Path: `GET /register`
+- Purpose: Render new-user creation form.
+- Requirement Links: `FR-001`, `FR-001A`, `FR-001B`, `FR-001C`
+
+Notes:
+- V1 safety rule: this view is only available when either:
+	- no users exist yet (first-user bootstrap), OR
+	- registration is explicitly enabled by operator policy.
+
+### RT-16 User Registration Action
+- Method/Path: `POST /register`
+- Purpose: Create a new user account.
+- Requirement Links: `FR-001`, `FR-001A`, `FR-001B`, `FR-001C`
+
+Notes:
+- On success, redirect to `RT-01` (login) or auto-login per implementation decision.
+- On failure (duplicate email, invalid password), re-render `RT-15` with inline errors.
+- If the implementation uses pending-user caching, the account must be activated within 48 hours or it expires.
+
 ### RT-04 Preferences View/Update
 - Method/Path: `GET /preferences`, `POST /preferences`
 - Purpose: View/update user topic/source preferences.

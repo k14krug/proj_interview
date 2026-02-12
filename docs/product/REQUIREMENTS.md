@@ -60,6 +60,9 @@ Note: Fetching the HTML of a known article URL from an RSS item to extract reada
 ### 5.1 User Management
 
 FR-001: The system shall support multiple authenticated users.  
+FR-001A: The system shall provide a mechanism to create a new user account.
+FR-001B: When no users exist, the system shall allow bootstrapping the first user without requiring an existing authenticated session.
+FR-001C: A newly created user account may remain in a pending/cached state for up to 48 hours; if not activated within that window, it shall expire and be removed or disabled.
 FR-002: Each user shall have independent topic preferences.  
 FR-003: Each user shall have independent source preferences.  
 FR-004: Generated articles and Daily Briefs shall be associated with a specific user.
@@ -149,6 +152,10 @@ NFR-008: Background jobs shall run at-most-once per schedule slot in production.
 NFR-009: Background job handlers shall be idempotent so safe replay is allowed after failures.
 NFR-010: Article-generation UX shall avoid reverse-proxy timeout dependence by using asynchronous processing with status polling.
 
+NFR-011: The web server port shall be configurable via .env.
+NFR-012: Development mode shall run with Flask debug enabled.
+NFR-013: The default display timezone shall be PDT when a user has not set a timezone preference.
+
 ---
 
 ## 7. Data Retention and Deletion Policy (V1)
@@ -163,6 +170,9 @@ Immutable tables (append-only; no deletes in normal operation):
 Mutable/retention-managed tables (purge allowed by admin policy):
 - raw_articles (and derived embeddings/full-text) may be purged after an admin-defined retention window only when not referenced by generated_article_sources or generated_article_citations.
 - clusters/cluster_articles may be purged only if they have no generated_articles referencing them.
+
+User lifecycle retention:
+- Pending/unactivated users (created via registration but not activated) may be automatically expired after 48 hours.
 
 Purge implementation note:
 - Purge queries should use `NOT EXISTS` against both `generated_article_sources` and `generated_article_citations` to avoid deleting referenced lineage rows.

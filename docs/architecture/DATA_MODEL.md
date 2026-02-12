@@ -38,10 +38,16 @@ Terminology:
 | email | VARCHAR(255) | Unique |
 | password_hash | VARCHAR(255) | |
 | created_at | DATETIME (UTC) | |
-| is_active | BOOLEAN | Default true |
+| activated_at | DATETIME (UTC) | Nullable; set on first successful login/activation |
+| last_login_at | DATETIME (UTC) | Nullable |
+| is_active | BOOLEAN | Default true; may be false for pending/cached users |
 
 Indexes/constraints:
 - Unique: `email`
+
+Lifecycle notes:
+- V1 may support a pending/cached registration state (see `FR-001C`) by setting `is_active=false` at creation time.
+- Pending users are considered expired if not activated within 48 hours of `created_at`.
 
 ---
 
@@ -56,7 +62,7 @@ One row per user.
 | topics_json | JSON | Optional |
 | source_whitelist_json | JSON | Optional |
 | source_blacklist_json | JSON | Optional |
-| timezone | VARCHAR(64) | e.g., America/Los_Angeles |
+| timezone | VARCHAR(64) | Display timezone; default PDT if unset (e.g., America/Los_Angeles) |
 
 Indexes/constraints:
 - Unique: `user_id`

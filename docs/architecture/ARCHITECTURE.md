@@ -17,8 +17,10 @@ Phase 1 (V1) represents the editorial engine foundation. Reader abstraction and 
 - WSL Ubuntu
 - MySQL 8.x
 - VS Code
-- Flask dev server
+- Flask dev server (debug enabled)
 - .env configuration
+
+Development web port is configured via `.env` (e.g., `K2_WEB_PORT`, default 5000).
 
 ### Production
 - Linux (ThinkPad W550)
@@ -108,6 +110,9 @@ Two supported modes:
 
 All timestamps stored in UTC.
 No reliance on MySQL timezone functions.
+
+Default display timezone:
+- If a user has not set a timezone preference, render timestamps in PDT at the presentation layer.
 
 ### 6.1 Migration Baseline Commands
 

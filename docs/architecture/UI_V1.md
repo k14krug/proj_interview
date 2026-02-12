@@ -46,7 +46,7 @@ Rationale:
 
 ## 3. Route and Screen Inventory
 
-V1 defines 14 route contracts (`RT-01` to `RT-14`).
+V1 defines 16 route contracts (`RT-01` to `RT-16`).
 
 Route type split:
 - Primary screen routes: 9
@@ -54,6 +54,7 @@ Route type split:
 
 Primary screen routes:
 - `RT-01` Login View (`GET /login`)
+- `RT-15` User Registration View (`GET /register`)
 - `RT-04` Preferences View (`GET /preferences`)
 - `RT-05` Cluster List (`GET /clusters`)
 - `RT-06` Cluster Detail (`GET /clusters/{cluster_id}`)
@@ -66,6 +67,7 @@ Primary screen routes:
 Action/status routes:
 - `RT-02` Login Action
 - `RT-03` Logout Action
+- `RT-16` User Registration Action
 - `RT-07` Generation Request
 - `RT-08` Generation Status
 - `RT-12` Brief Create Action
@@ -100,7 +102,7 @@ Suggested semantic color tokens:
 ## 5. Application Layout Contract
 
 ### 4.1 Unauthenticated Layout
-- Used only by `RT-01` login view.
+- Used only by unauthenticated routes (`RT-01` and `RT-15`).
 - Single centered panel with:
   - Product title
   - Login form
@@ -170,6 +172,15 @@ Required behavior:
 
 ### RT-03 Logout Action
 - Ends session and redirects to `RT-01`.
+
+### RT-15 User Registration View
+- Shows email + password + confirm password inputs and submit action.
+- If registration is not permitted by policy, render a clear denial message (do not reveal whether any specific email exists).
+
+### RT-16 User Registration Action
+- On success, redirects to `RT-01` (or logs in immediately if implementation chooses that pattern).
+- If pending-user caching is enabled, show a short note that the account must be activated within 48 hours.
+- On failure, returns to `RT-15` with inline validation errors.
 
 ### RT-04 Preferences View/Update
 - Shows editable topic/source preference controls.

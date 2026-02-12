@@ -39,6 +39,8 @@ Route conventions:
 - Acceptance Criteria:
   - App starts via factory in development and production entrypoints.
   - `.env` settings are loaded through one configuration layer.
+  - Development runs with Flask debug enabled.
+  - Web server port is configurable via `.env`.
 - Test Requirements:
   - Add configuration loading tests for required env vars and defaults.
 - Memory Bank:

@@ -179,6 +179,9 @@ Cleanup must:
 
 Cleanup must be safe to re-run without side effects.
 
+Optional retention target (V1):
+- Expire pending/cached users created via registration (see `FR-001C`) after 48 hours if not activated.
+
 ---
 
 ## 9. APScheduler Configuration (V1)
