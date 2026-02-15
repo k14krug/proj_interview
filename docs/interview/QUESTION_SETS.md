@@ -27,23 +27,23 @@ Exit criteria:
 
 ---
 
-## Set 02: Product Phasing and Boundaries
+## Set 02: Scope Boundaries and Future Guardrails
 
-Goal: separate V1 from future phases so implementation does not drift.
+Goal: separate V1 from non-V1 (deferred or out-of-scope) so implementation does not drift.
 
 Primary questions:
-1. What belongs in Phase 1, Phase 2, and later?
+1. What belongs in V1 vs not-V1 (deferred or explicitly out of scope)?
 2. What capabilities must be excluded from V1 code paths?
 3. What future flexibility must V1 preserve?
 4. Are there hard "do not build yet" rules?
 5. What migration assumptions should V1 avoid?
 
 Follow-up triggers:
-1. If a feature is "maybe V1", force a phase assignment.
+1. If a feature is "maybe V1", force an explicit V1 vs not-V1 assignment.
 2. If future mode depends on V1 structure, ask for non-negotiable invariants.
 
 Exit criteria:
-1. Phase boundaries are explicit and testable.
+1. V1 boundaries are explicit and testable.
 2. Anti-scope rules exist to prevent premature implementation.
 
 ---

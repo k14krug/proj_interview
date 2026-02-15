@@ -1,8 +1,8 @@
 # K2 Daily Brief — AGENTS.md
 
 Version: 2.1
-Last Updated: 2026-02-12
-Change Summary: Added `/PHASE [XX]` slash command entry point for iterating all tasks in an execution phase.
+Last Updated: 2026-02-15
+Change Summary: Added `/INTERVIEW [ProjectName]` slash command entry point for running the documentation interview before implementation work.
 
 ---
 
@@ -41,6 +41,7 @@ If docs conflict, the higher item in Product Authority wins unless explicitly ov
 - `/PHASE [XX]` -> `docs/harness/commands.md`
 - `/ADHOC [Description]` -> `docs/harness/commands.md`
 - `/PLAN` -> `docs/harness/commands.md`
+- `/INTERVIEW [ProjectName]` -> `docs/harness/commands.md`
 
 Task and ad hoc IDs:
 - Task: `PH-XX-YY` (execution phase tracking ID)

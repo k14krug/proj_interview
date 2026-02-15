@@ -20,16 +20,16 @@ Required outputs:
 3. Explicit V1 scope and out-of-scope.
 4. Success criteria and acceptance rules.
 
-### `docs/product/PRODUCT_PHASES.md`
+### `docs/product/PRODUCT_PHASES.md` (Scope Guardrails)
 
 Source sets:
 1. Set 01
 2. Set 02
 
 Required outputs:
-1. Phase descriptions.
-2. V1 exclusion guardrails.
-3. Transition principle to later phases.
+1. Clear V1 scope boundary statement (what V1 is and is not).
+2. V1 exclusion guardrails (anti-scope rules for code paths).
+3. Future-readiness principles (without assuming a phased roadmap).
 
 ## 2. Architecture Docs
 
@@ -105,6 +105,7 @@ Required outputs:
 1. canonical doc authority map.
 2. command entry points.
 3. invariants and validation protocol.
+4. note: `AGENTS.md` changes require explicit user approval; otherwise verify alignment only.
 
 ### `docs/harness/*.md`
 
@@ -136,4 +137,5 @@ Before drafting docs, verify:
 3. All route contracts map to UI behaviors and tests.
 4. Async workflows include explicit status transitions.
 5. Data retention rules cannot violate immutable lineage.
-6. Open questions are explicitly deferred with target phase/date.
+6. Open questions are explicitly deferred with target milestone/date.
+7. Old product names/assumptions are scrubbed from drafted docs.

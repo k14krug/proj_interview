@@ -1,6 +1,10 @@
-# Documentation Index
+# Documentation Index (Template)
 
-This directory is the canonical documentation root for K2 Daily Brief.
+This `docs/` tree is a reusable **template** for starting new projects with an AI agent.
+
+Start a new project by running the interview process in `docs/interview/` and drafting a full docs set in `docs/_draft_<project>/`. After freeze, replace the canonical docs under `docs/` with the finalized draft.
+
+Concrete examples live in `docs/examples/`.
 
 ## Authority Order
 
@@ -24,12 +28,13 @@ This directory is the canonical documentation root for K2 Daily Brief.
 8. `docs/workflow/PROGRESS.md`
 
 ## Structure
-- `docs/product/` product scope and requirements
-- `docs/architecture/` technical architecture and data semantics
-- `docs/harness/` agent operating policies
-- `docs/workflow/` task queue and progress log
+- `docs/product/` product scope and requirements (template)
+- `docs/architecture/` technical architecture and data semantics (template)
+- `docs/harness/` agent operating policies (generally reusable)
+- `docs/workflow/` task queue and progress log templates
 - `docs/decisions/` ADRs and major decision records
-- `docs/interview/` reusable multi-pass interview kit for gathering new-project documentation inputs
+- `docs/interview/` multi-pass interview kit for gathering new-project documentation inputs
+- `docs/examples/` frozen example documentation sets (non-authoritative)
 
 ## Validation
 Run:
@@ -37,3 +42,4 @@ Run:
 ```bash
 ./scripts/validate_docs.sh
 ```
+

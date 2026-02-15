@@ -21,7 +21,7 @@
 | Set ID | Set Name | Status | Last Updated | Critical Gaps |
 |---|---|---|---|---|
 | 01 | Product intent and outcomes | not started | | |
-| 02 | Product phasing and boundaries | not started | | |
+| 02 | Scope boundaries and future guardrails | not started | | |
 | 03 | Users, auth, and isolation | not started | | |
 | 04 | Domain objects and data lifecycle | not started | | |
 | 05 | Workflows and background execution | not started | | |
@@ -39,7 +39,7 @@
 
 ## 4. Deferred Decisions
 
-| Decision ID | Description | Deferred To Phase | Rationale | Risk |
+| Decision ID | Description | Deferred Until (Milestone/Date) | Rationale | Risk |
 |---|---|---|---|---|
 | DD-01 | | | | |
 
@@ -49,3 +49,4 @@
 - Outstanding blockers:
 - Ready to draft docs: `yes` | `no`
 - Notes:
+

@@ -1,69 +1,35 @@
-Project: K2 Daily Brief
+# Scope Guardrails (Template)
 
-1. Product Philosophy
-K2 Daily Brief has two conceptual layers:
-	1. V1 – Newsroom Engine
-	2. Final Product – Clean Daily Reader
-These represent different operational modes and user experiences.
-V1 is not the final user experience.
+Project: `<ProjectName>`
+Doc Status: `template` | `draft` | `frozen`
+Last Updated (UTC): `<YYYY-MM-DD>`
 
-2. Phase 1 – Newsroom Engine (V1)
-Purpose:
-Enable controlled generation of high-quality synthetic articles using human-in-the-loop selection.
-Characteristics:
-	• Event Clusters visible to user
-	• Manual selection of source articles
-	• Explicit “Generate Article” action
-	• Administrative dashboard feel
-	• Structured workflow
-	• Debug visibility
-	• Traceability prioritized over aesthetics
-V1 must include:
-		• RSS ingestion
-		• Event clustering
-		• Manual review
-		• Article generation
-		• Daily Brief compilation
-		• Information Gap indicator for Event Clusters (Thin/Moderate/High Depth)
-		• Synthesis Audit (V1-lite: citation → source URL, with excerpt when available)
-V1 must NOT include:
-		• Fully automated story selection
-		• Narrative evolution tracking
-		• Automatic updates to events
-		• Advanced bias scoring
-		• UI optimized purely for passive reading
-		• Exact character-level source-span highlighting in generated article text
-V1 is a controlled editorial engine.
+Note: This file name is historical. Treat it as the canonical place for **V1 vs not-V1** scope guardrails and future-readiness principles, without assuming a phased roadmap.
 
-3. Phase 2 – Reader Mode (Final Product)
-Purpose:
-Deliver a calm, structured daily reading experience.
-Characteristics:
-	• Clean presentation
-	• Minimal operational controls visible
-	• Event Clusters abstracted away
-	• Focus on reading, not managing
-	• Possibly automated generation
-	• Event update summaries
-	• Story evolution tracking
-The final product may:
-		• Hide clustering mechanics
-		• Auto-generate stories
-		• Provide delta updates
-		• Provide event evolution timelines
-		• Emphasize simplicity over system transparency
-		• Provide full Synthesis Audit highlighting of exact source text spans
+## 1. V1 Boundary Statement
 
-4. Architectural Rule
-All V1 development must:
-	• Avoid building Phase 2 logic.
-	• Avoid schema changes that assume automated generation.
-	• Avoid coupling clustering to article generation.
-	• Avoid introducing narrative versioning.
-Phase 2 features must not exist in V1 code paths.
+- What V1 is (one paragraph):
+- What V1 is not (one paragraph):
 
-5. Transition Principle
-The system must be architected so that:
-	• Newsroom Engine logic can be retained.
-	• Reader Mode can later abstract or simplify UI without schema redesign.
-The final product is built on top of V1 — not alongside it.
+## 2. Exclusion Guardrails (Anti-Scope Rules)
+
+Hard “do not build yet” rules that prevent accidental scope creep.
+
+Examples (replace with real rules):
+- Do not add roles/permissions beyond what is explicitly required in V1.
+- Do not introduce background job orchestration beyond the semantics in `docs/architecture/JOB_EXECUTION_SEMANTICS.md`.
+- Do not add multi-tenant abstractions unless V1 requires them.
+
+## 3. Future-Readiness Principles
+
+Constraints V1 must respect so future capabilities remain possible:
+- Data model extensibility rules:
+- Route contract stability rules:
+- UI contract extensibility rules:
+
+## 4. Deferred Decisions (Milestone/Date Based)
+
+| ID | Decision | Deferred Until (Milestone/Date) | Rationale | Risk |
+|---|---|---|---|---|
+| DD-001 | TBD | TBD | TBD | TBD |
+

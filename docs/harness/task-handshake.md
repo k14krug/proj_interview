@@ -11,8 +11,9 @@ A task is complete only when all items below are satisfied.
 6. Route-linked tasks include integration tests for linked route semantics.
 7. Relevant tests are run, or a reason for not running tests is documented.
 8. For successful task execution, a local scoped commit is created using `type(PH-XX-YY): ...` format before marking the task `[x]`.
-9. Task status in `docs/workflow/TODO.md` is updated (`[/]` -> `[x]` or `[!]`).
-10. A transaction entry is appended to `docs/workflow/PROGRESS.md`.
+9. If `AGENTS.md` was modified, explicit user approval is recorded in the task notes and the change is linked.
+10. Task status in `docs/workflow/TODO.md` is updated (`[/]` -> `[x]` or `[!]`).
+11. A transaction entry is appended to `docs/workflow/PROGRESS.md`.
 
 ## Required PROGRESS Entry Fields
 - Timestamp (UTC)

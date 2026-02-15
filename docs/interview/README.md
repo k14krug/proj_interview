@@ -4,6 +4,8 @@ Purpose: run a structured interview that gathers enough information to create a 
 
 This kit is designed for iterative interviewing, not one-shot questionnaires. You ask in sets, follow up on gaps, resolve conflicts, then draft docs.
 
+This is a **documentation process**, not a coding process. Do not change application code during the interview unless you explicitly pause the interview and approve implementation work.
+
 ## Who This Is For
 
 Use this if you are:
@@ -27,17 +29,22 @@ Completed interviews should produce draft-ready inputs for:
 1. `INTERVIEW_PROCESS.md` - pass-based method and quality gates.
 2. `QUESTION_SETS.md` - staged question sets with follow-up triggers.
 3. `DOCUMENT_MAPPING.md` - exact mapping from answers to target docs.
-4. `templates/INTERVIEW_SESSION_TEMPLATE.md` - run tracker for a project interview.
-5. `templates/ANSWER_LEDGER_TEMPLATE.md` - detailed answer ledger with open/assumption tracking.
+4. `INTERVIEW_SESSION_TEMPLATE.md` - run tracker for a project interview.
+5. `ANSWER_LEDGER_TEMPLATE.md` - detailed answer ledger with open/assumption tracking.
 
 ## How To Use
 
-1. Copy `templates/INTERVIEW_SESSION_TEMPLATE.md` for your new project.
-2. Copy `templates/ANSWER_LEDGER_TEMPLATE.md` for answer tracking.
-3. Run Set 01 through Set 10 in `QUESTION_SETS.md`.
-4. Re-run only sets with unresolved or conflicting answers.
-5. Apply `DOCUMENT_MAPPING.md` to draft your final docs.
-6. Freeze decisions only when critical items are `decided`.
+1. Create interview artifacts in `docs/interview/`:
+   - Copy `INTERVIEW_SESSION_TEMPLATE.md`.
+   - Copy `ANSWER_LEDGER_TEMPLATE.md`.
+   - Rename both files to include the new project's name (for example: `AcmeWidget_INTERVIEW_SESSION.md`, `AcmeWidget_ANSWER_LEDGER.md`).
+2. Run the question sets in `QUESTION_SETS.md` in order, revisiting sets when follow-up triggers fire.
+3. Record answers in the ledger with status (`decided` / `assumption` / `open`) and an owner for every `open` item.
+4. Draft into a **parallel tree** (recommended): create `docs/_draft_<project>/` early and update it continuously as answers become `decided` (see `INTERVIEW_PROCESS.md`).
+5. Scrub old product names/assumptions from **all drafted docs** before freeze (see `INTERVIEW_PROCESS.md` and `SCRUB_CHECKLIST.md`).
+6. Freeze only when critical items are `decided`, then replace the canonical docs under `docs/` with the finalized draft.
+
+Tip: if using the harness slash commands, start with `/INTERVIEW [ProjectName]` (defined in `docs/harness/commands.md`).
 
 ## Working Pattern
 

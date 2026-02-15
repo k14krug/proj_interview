@@ -2,6 +2,10 @@
 
 This file defines behavior for slash-style command switches.
 
+## Global Safeties
+
+1. Do not modify `AGENTS.md` without explicit user approval. If a change seems necessary, stop and ask for approval first.
+
 ## ID Conventions
 - Task ID format: `PH-XX-YY`
   - `XX` = execution phase number (2 digits)
@@ -90,3 +94,32 @@ Rules:
 4. Include dependencies, risks, and testing expectations.
 
 If required inputs are missing, stop and report the issue.
+
+## `/INTERVIEW [ProjectName]`
+Run the documentation interview process to produce a new project docs set before any implementation work.
+
+Preconditions:
+1. `docs/interview/` exists.
+2. `ProjectName` is provided (used for naming interview artifacts and draft tree).
+3. You have explicit user approval before modifying `AGENTS.md`.
+
+Execution:
+1. Create interview artifacts (do not edit templates in place):
+   - Copy `docs/interview/INTERVIEW_SESSION_TEMPLATE.md` to `docs/interview/<ProjectName>_INTERVIEW_SESSION.md`.
+   - Copy `docs/interview/ANSWER_LEDGER_TEMPLATE.md` to `docs/interview/<ProjectName>_ANSWER_LEDGER.md`.
+2. Create a parallel draft tree at `docs/_draft_<ProjectName>/` mirroring the final structure (`product/`, `architecture/`, `harness/`, `workflow/`).
+3. Draft continuously during the interview:
+   - As each set reaches `decided` on its critical items, update the corresponding files under `docs/_draft_<ProjectName>/`.
+   - Do not wait until all sets are complete to start drafting.
+4. Conduct the interview using:
+   - process rules in `docs/interview/INTERVIEW_PROCESS.md`
+   - question sets in `docs/interview/QUESTION_SETS.md`
+   - answer-to-doc mapping in `docs/interview/DOCUMENT_MAPPING.md`
+5. Scrub old product names/assumptions from all drafted docs per `docs/interview/SCRUB_CHECKLIST.md`.
+6. Freeze only when criteria in `docs/interview/INTERVIEW_PROCESS.md` are satisfied.
+7. After freeze, replace canonical docs under `docs/` with the finalized draft from `docs/_draft_<ProjectName>/`.
+8. Only after docs are frozen, proceed to implementation work using `/TASK` and `/PHASE`.
+
+Stop conditions:
+1. If asked to change application code before freeze, stop and confirm the user wants to shift from interview (docs) to implementation (code).
+2. If a change to `AGENTS.md` is needed, stop and ask for explicit approval before proceeding.
