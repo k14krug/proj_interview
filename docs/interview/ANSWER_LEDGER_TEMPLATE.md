@@ -2,9 +2,9 @@
 
 Use one row per question answered during interview sessions.
 
-| Row ID | Set | Question | Answer Summary | Status | Owner | Confidence (1-5) | Source Session/Date | Follow-Up Needed | Target Doc(s) |
-|---|---|---|---|---|---|---|---|---|---|
-| AL-001 | 01 | | | decided | | 5 | | no | |
+| Row ID | Set | Question | Answer Summary | Status | Owner | Confidence (1-5) | Source Type | Source Ref | Follow-Up Needed | Target Doc(s) |
+|---|---|---|---|---|---|---|---|---|---|---|
+| AL-001 | 01 | | | decided | | 5 | requirements_doc \| interview | path + section OR session/date | no | |
 
 Status values:
 - `decided`
@@ -18,4 +18,3 @@ Use this section to capture conflicts found during reconciliation.
 | Check ID | Conflict | Affected Sets | Resolution Plan | Owner | Due Date |
 |---|---|---|---|---|---|
 | CC-01 | | | | | |
-

@@ -38,11 +38,12 @@ Completed interviews should produce draft-ready inputs for:
    - Copy `INTERVIEW_SESSION_TEMPLATE.md`.
    - Copy `ANSWER_LEDGER_TEMPLATE.md`.
    - Rename both files to include the new project's name (for example: `AcmeWidget_INTERVIEW_SESSION.md`, `AcmeWidget_ANSWER_LEDGER.md`).
-2. Run the question sets in `QUESTION_SETS.md` in order, revisiting sets when follow-up triggers fire.
-3. Record answers in the ledger with status (`decided` / `assumption` / `open`) and an owner for every `open` item.
-4. Draft into a **parallel tree** (recommended): create `docs/_draft_<project>/` early and update it continuously as answers become `decided` (see `INTERVIEW_PROCESS.md`).
-5. Scrub old product names/assumptions from **all drafted docs** before freeze (see `INTERVIEW_PROCESS.md` and `SCRUB_CHECKLIST.md`).
-6. Freeze only when critical items are `decided`, then replace the canonical docs under `docs/` with the finalized draft.
+2. If you already have a requirements doc, provide its location and format (Markdown or plain text). The interview should use it as a seed and ask only what is missing or unclear.
+3. Run the question sets in `QUESTION_SETS.md` in order, revisiting sets when follow-up triggers fire.
+4. Record answers in the ledger with status (`decided` / `assumption` / `open`) and an owner for every `open` item, and include source references (existing requirements doc vs interview).
+5. Draft into a **parallel tree** (recommended): create `docs/_draft_<project>/` early and update it continuously as answers become `decided` (see `INTERVIEW_PROCESS.md`).
+6. Scrub old product names/assumptions from **all drafted docs** before freeze (see `INTERVIEW_PROCESS.md` and `SCRUB_CHECKLIST.md`).
+7. Freeze only when critical items are `decided`, then replace the canonical docs under `docs/` with the finalized draft.
 
 Tip: if using the harness slash commands, start with `/INTERVIEW [ProjectName]` (defined in `docs/harness/commands.md`).
 

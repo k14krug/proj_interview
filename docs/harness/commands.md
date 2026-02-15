@@ -108,17 +108,24 @@ Execution:
    - Copy `docs/interview/INTERVIEW_SESSION_TEMPLATE.md` to `docs/interview/<ProjectName>_INTERVIEW_SESSION.md`.
    - Copy `docs/interview/ANSWER_LEDGER_TEMPLATE.md` to `docs/interview/<ProjectName>_ANSWER_LEDGER.md`.
 2. Create a parallel draft tree at `docs/_draft_<ProjectName>/` mirroring the final structure (`product/`, `architecture/`, `harness/`, `workflow/`).
-3. Draft continuously during the interview:
+3. Requirements intake (before asking Set 01):
+   - Ask whether a requirements doc already exists.
+   - If it exists, request its location and format (Markdown or plain text).
+   - Use it as a seed: extract what it already answers, record those items in the ledger with source references, and draft `docs/_draft_<ProjectName>/product/REQUIREMENTS.md` from it.
+4. Draft continuously during the interview:
    - As each set reaches `decided` on its critical items, update the corresponding files under `docs/_draft_<ProjectName>/`.
    - Do not wait until all sets are complete to start drafting.
-4. Conduct the interview using:
+5. Conduct the interview using:
    - process rules in `docs/interview/INTERVIEW_PROCESS.md`
    - question sets in `docs/interview/QUESTION_SETS.md`
    - answer-to-doc mapping in `docs/interview/DOCUMENT_MAPPING.md`
-5. Scrub old product names/assumptions from all drafted docs per `docs/interview/SCRUB_CHECKLIST.md`.
-6. Freeze only when criteria in `docs/interview/INTERVIEW_PROCESS.md` are satisfied.
-7. After freeze, replace canonical docs under `docs/` with the finalized draft from `docs/_draft_<ProjectName>/`.
-8. Only after docs are frozen, proceed to implementation work using `/TASK` and `/PHASE`.
+6. Ask only what is missing, ambiguous, or contradictory:
+   - If the existing requirements doc already answers a baseline question, skip it.
+   - If the doc is ambiguous or contradictory, ask brief confirmation questions to resolve it.
+7. Scrub old product names/assumptions from all drafted docs per `docs/interview/SCRUB_CHECKLIST.md`.
+8. Freeze only when criteria in `docs/interview/INTERVIEW_PROCESS.md` are satisfied.
+9. After freeze, replace canonical docs under `docs/` with the finalized draft from `docs/_draft_<ProjectName>/`.
+10. Only after docs are frozen, proceed to implementation work using `/TASK` and `/PHASE`.
 
 Stop conditions:
 1. If asked to change application code before freeze, stop and confirm the user wants to shift from interview (docs) to implementation (code).

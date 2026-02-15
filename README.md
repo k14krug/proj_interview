@@ -34,6 +34,9 @@ Drafting rules:
 - Keep canonical `docs/` files as-is until freeze criteria are met; only then replace `docs/` with the finalized draft.
 - Run a scrub pass to remove any inherited names/assumptions from the draft before freeze.
 
+Requirements doc (optional):
+- If I already have a requirements doc, I will provide its path and format (Markdown or plain text). Use it as a seed and ask only what is missing, ambiguous, or contradictory.
+
 Start with Set 01 and ask questions one at a time. Record each answer in the ledger with status (`decided` / `assumption` / `open`) and an owner for each `open` item.
 ```
 

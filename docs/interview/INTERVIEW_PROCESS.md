@@ -16,20 +16,34 @@ Use a four-pass loop. Do not try to finalize everything in one pass.
 3. Pass 3: Conflict resolution and tradeoff decisions.
 4. Pass 4: Freeze, acceptance checks, and doc drafting handoff.
 
-## 2. Question Cycle (Per Set)
+## 2. Requirements Intake (Optional, Recommended)
+
+Before Set 01, ask:
+1. Does a requirements doc already exist?
+2. If yes: where is it and what format is it (Markdown or plain text)?
+
+If an existing requirements doc is provided:
+1. Treat it as a **seed**, not as an implementation spec.
+2. Extract answers it contains and record them in the answer ledger with source references.
+3. Identify gaps vs the required outputs in `docs/interview/DOCUMENT_MAPPING.md` and the question sets in `docs/interview/QUESTION_SETS.md`.
+4. Ask only additional questions needed to fill gaps or resolve contradictions/ambiguities.
+5. If the doc is ambiguous or contradictory, ask brief confirmation questions to resolve it.
+
+## 3. Question Cycle (Per Set)
 
 For each question set in `docs/interview/QUESTION_SETS.md`:
 
-1. Ask baseline questions.
-2. Ask follow-ups triggered by ambiguous, missing, or conflicting answers.
-3. Record answers in the ledger with status:
+1. Start by checking whether baseline questions are already answered by the existing requirements doc (if any).
+2. Ask baseline questions only when information is missing.
+3. Ask follow-ups triggered by ambiguous, missing, or conflicting answers.
+4. Record answers in the ledger with status:
    - `decided`
    - `assumption`
    - `open`
-4. Add explicit owner for each open item.
-5. Re-run only the sets with unresolved answers in the next pass.
+5. Add explicit owner for each open item.
+6. Re-run only the sets with unresolved answers in the next pass.
 
-## 3. Drafting Cadence (When to Create/Update Docs)
+## 4. Drafting Cadence (When to Create/Update Docs)
 
 Drafting is **ongoing during the interview**, not a post-interview step.
 
@@ -40,7 +54,7 @@ Rules:
 4. Use `docs/interview/DOCUMENT_MAPPING.md` to decide which set updates which target doc section.
 5. Use reconciliation questions at the end of each pass to find missing mappings and trigger follow-ups.
 
-## 4. Answer Quality Rules
+## 5. Answer Quality Rules
 
 An answer is complete only if it has:
 
@@ -49,7 +63,7 @@ An answer is complete only if it has:
 3. Operational constraint (performance, security, compliance, cost, timeline, staffing).
 4. Testability statement (how we know this works).
 
-## 5. Iteration Triggers
+## 6. Iteration Triggers
 
 Run another pass for a set if any of these occur:
 
@@ -59,7 +73,7 @@ Run another pass for a set if any of these occur:
 4. A requirement exists without route/data/worker implications.
 5. A background process exists without execution safety semantics.
 
-## 6. Freeze Criteria
+## 7. Freeze Criteria
 
 Draft docs are ready to freeze and replace canonical `docs/` only when:
 
@@ -75,7 +89,7 @@ Draft docs are ready to freeze and replace canonical `docs/` only when:
    - no leftover domain assumptions that contradict new answers
    - no stale routes/entities/constraints from the prior project
 
-## 7. Deliverables After Freeze
+## 8. Deliverables After Freeze
 
 1. Completed interview session file.
 2. Completed answer ledger.

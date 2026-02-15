@@ -2,6 +2,10 @@
 
 Use this matrix to convert interview answers into the final documentation set.
 
+If an existing requirements doc is provided, use it as a seed:
+1. Extract what it already answers and record those items in the answer ledger with source references.
+2. Ask only additional questions needed to fill gaps or resolve contradictions/ambiguities.
+
 ## 1. Product Docs
 
 ### `docs/product/REQUIREMENTS.md`
@@ -125,7 +129,7 @@ Source sets:
 3. Set 06
 
 Required outputs:
-1. phased task plan with requirement links and route links.
+1. sequenced task plan with requirement links and route links.
 2. progress log template and concrete log entries.
 
 ## 4. Pre-Draft Completeness Checklist

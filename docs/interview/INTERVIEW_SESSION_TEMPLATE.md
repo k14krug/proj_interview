@@ -6,6 +6,9 @@
 - Session Start Date:
 - Target V1 Date:
 - Current Pass: `1` | `2` | `3` | `4`
+- Existing Requirements Doc: `yes` | `no`
+- Requirements Doc Location (if yes):
+- Requirements Doc Format: `markdown` | `text`
 
 ## 1. Pass Tracker
 
@@ -49,4 +52,3 @@
 - Outstanding blockers:
 - Ready to draft docs: `yes` | `no`
 - Notes:
-
