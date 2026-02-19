@@ -130,7 +130,7 @@ Source sets:
 4. Set 09
 
 Required outputs:
-1. sequenced task plan with requirement links and route links.
+1. fully populated sequenced task plan (not template-only) with requirement links and route links.
 2. progress log template and concrete log entries.
 3. at least one early implementation task defines/implements the configuration contract, including `.env`/`.env.example` creation and required variable inventory.
 
@@ -146,3 +146,4 @@ Before drafting docs, verify:
 6. Open questions are explicitly deferred with target milestone/date.
 7. Old product names/assumptions are scrubbed from drafted docs.
 8. Set 09 configuration decisions are mapped into executable TODO tasks (not only requirements prose).
+9. `docs/workflow/TODO.md` is implementation-ready before freeze (sequenced `PH-XX-YY` tasks with no unresolved template placeholders).

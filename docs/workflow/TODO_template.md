@@ -21,6 +21,7 @@ See `docs/harness/commands.md` for `/TASK`, `/PHASE`, and `/INTERVIEW` execution
 - Acceptance Criteria:
   - Interview artifacts exist in `docs/interview/` and are project-named.
   - Draft tree `docs/_draft_<ProjectName>/` exists with filled docs.
+  - `docs/_draft_<ProjectName>/workflow/TODO.md` is fully populated and implementation-ready (not template-only).
   - Scrub pass checklist is satisfied.
   - `./scripts/validate_docs.sh` passes.
 - Test Requirements:
@@ -30,4 +31,3 @@ See `docs/harness/commands.md` for `/TASK`, `/PHASE`, and `/INTERVIEW` execution
     - This task exists to prevent starting implementation before docs are frozen.
   - Risks:
     - Skipping doc freeze causes scope drift and inconsistent contracts.
-

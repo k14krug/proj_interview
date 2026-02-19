@@ -85,6 +85,7 @@ Draft docs are ready to freeze and replace canonical `docs/` only when:
    - async/background behavior has job execution semantics
    - testing expectations exist for all behavior changes
    - Set 09 env/config decisions are reflected in implementation planning (including `.env`/`.env.example` handling task(s))
+   - `docs/workflow/TODO.md` is fully populated (not template-only) with sequenced `PH-XX-YY` implementation tasks, requirement/route links, and explicit config-contract task(s)
 4. Scrub pass completes:
    - no references to the old product name
    - no leftover domain assumptions that contradict new answers
@@ -97,3 +98,4 @@ Draft docs are ready to freeze and replace canonical `docs/` only when:
 3. Open questions list with owners and target dates.
 4. Draft-ready mapping package using `docs/interview/DOCUMENT_MAPPING.md`.
 5. Scrub checklist notes (what was searched, what was removed, what remains deferred).
+6. Finalized `docs/workflow/TODO.md` in the draft/canonical set, ready for `/TASK` and `/PHASE` execution without template placeholders.

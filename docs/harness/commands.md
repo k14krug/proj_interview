@@ -51,17 +51,25 @@ Preconditions:
 1. `docs/workflow/TODO.md` exists.
 2. Requested execution phase section exists and matches `Execution Phase XX`.
 3. At least one eligible `PH-XX-YY` task exists in the target section.
-4. Each eligible task includes `Requirement Links`, `Route Links`, scope, acceptance criteria, and memory-bank context.
+4. `docs/workflow/PROGRESS.md` exists.
+5. Each eligible task includes `Requirement Links`, `Route Links`, scope, acceptance criteria, and memory-bank context.
 
 Execution:
 1. Read full phase section context first.
-2. Execute tasks in ascending task ID order (`PH-XX-01`, `PH-XX-02`, ...).
-3. For each task, follow `/TASK` rules exactly (status transitions, route/UI semantics, tests, local commit requirement, and progress logging).
-4. After each task:
+2. Because each phase starts in a new conversation, run a mandatory preflight consistency review before changing any task status:
+   - Review all prior execution phases (`< XX`) in `docs/workflow/TODO.md`.
+   - Review corresponding prior work details in `docs/workflow/PROGRESS.md` (`PH-*` and relevant `AH-*` entries), including unresolved blockers, technical debt, and stated next steps.
+   - Review future execution phases (`> XX`) in `docs/workflow/TODO.md` for dependencies, assumptions, and sequencing that could constrain current-phase decisions.
+   - Identify gaps, contradictions, or missing dependency links across prior phase outcomes, current phase tasks, and future phase plans.
+   - Produce explicit preflight questions for anything ambiguous or contradictory, and ask the user before starting task execution.
+   - If no questions are needed, state that no preflight questions were found and proceed.
+3. Execute tasks in ascending task ID order (`PH-XX-01`, `PH-XX-02`, ...).
+4. For each task, follow `/TASK` rules exactly (status transitions, route/UI semantics, tests, local commit requirement, and progress logging).
+5. After each task:
    - Continue on success.
    - Confirm a local commit was created for each task marked `[x]` before moving to the next task.
    - Stop phase execution on `[!]` blocked status and report blocker with concrete unblock condition.
-5. On completion, provide a phase summary:
+6. On completion, provide a phase summary:
    - tasks completed
    - tasks blocked
    - tests run / not run
@@ -115,6 +123,7 @@ Execution:
 4. Draft continuously during the interview:
    - As each set reaches `decided` on its critical items, update the corresponding files under `docs/_draft_<ProjectName>/`.
    - Do not wait until all sets are complete to start drafting.
+   - Fully populate `docs/_draft_<ProjectName>/workflow/TODO.md` during the interview (not at implementation start), with sequenced `PH-XX-YY` tasks and requirement/route links.
    - When Set 09 config decisions are `decided`, add explicit TODO task(s) for implementing the configuration model, including `.env`/`.env.example` and variable inventory.
 5. Conduct the interview using:
    - process rules in `docs/interview/INTERVIEW_PROCESS.md`
@@ -125,7 +134,7 @@ Execution:
    - If the doc is ambiguous or contradictory, ask brief confirmation questions to resolve it.
 7. Scrub old product names/assumptions from all drafted docs per `docs/interview/SCRUB_CHECKLIST.md`.
 8. Freeze only when criteria in `docs/interview/INTERVIEW_PROCESS.md` are satisfied.
-9. After freeze, replace canonical docs under `docs/` with the finalized draft from `docs/_draft_<ProjectName>/`.
+9. After freeze, replace canonical docs under `docs/` with the finalized draft from `docs/_draft_<ProjectName>/`, including the fully populated `docs/workflow/TODO.md`.
 10. Only after docs are frozen, proceed to implementation work using `/TASK` and `/PHASE`.
 
 Stop conditions:

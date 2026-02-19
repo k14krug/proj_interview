@@ -51,4 +51,5 @@
 - Freeze date:
 - Outstanding blockers:
 - Ready to draft docs: `yes` | `no`
+- Workflow TODO complete and implementation-ready: `yes` | `no`
 - Notes:

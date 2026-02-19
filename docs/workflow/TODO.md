@@ -36,6 +36,7 @@ Route conventions:
 - Acceptance Criteria:
   - Interview artifacts exist in `docs/interview/` and are project-named.
   - Draft tree `docs/_draft_<ProjectName>/` exists with filled docs.
+  - `docs/_draft_<ProjectName>/workflow/TODO.md` is fully populated and implementation-ready (not template-only).
   - Scrub pass checklist is satisfied.
   - `./scripts/validate_docs.sh` passes.
 - Test Requirements:
@@ -54,4 +55,3 @@ Route conventions:
 ## Notes
 - Keep tasks small and independently shippable.
 - Every behavior-changing task should include tests when testable.
-
