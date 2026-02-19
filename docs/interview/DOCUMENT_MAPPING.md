@@ -127,10 +127,12 @@ Source sets:
 1. Set 10
 2. Set 01
 3. Set 06
+4. Set 09
 
 Required outputs:
 1. sequenced task plan with requirement links and route links.
 2. progress log template and concrete log entries.
+3. at least one early implementation task defines/implements the configuration contract, including `.env`/`.env.example` creation and required variable inventory.
 
 ## 4. Pre-Draft Completeness Checklist
 
@@ -143,3 +145,4 @@ Before drafting docs, verify:
 5. Data retention rules cannot violate immutable lineage.
 6. Open questions are explicitly deferred with target milestone/date.
 7. Old product names/assumptions are scrubbed from drafted docs.
+8. Set 09 configuration decisions are mapped into executable TODO tasks (not only requirements prose).

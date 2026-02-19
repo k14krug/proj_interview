@@ -84,6 +84,7 @@ Draft docs are ready to freeze and replace canonical `docs/` only when:
    - requirement -> data model mapping is complete
    - async/background behavior has job execution semantics
    - testing expectations exist for all behavior changes
+   - Set 09 env/config decisions are reflected in implementation planning (including `.env`/`.env.example` handling task(s))
 4. Scrub pass completes:
    - no references to the old product name
    - no leftover domain assumptions that contradict new answers

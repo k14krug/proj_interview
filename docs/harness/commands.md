@@ -115,6 +115,7 @@ Execution:
 4. Draft continuously during the interview:
    - As each set reaches `decided` on its critical items, update the corresponding files under `docs/_draft_<ProjectName>/`.
    - Do not wait until all sets are complete to start drafting.
+   - When Set 09 config decisions are `decided`, add explicit TODO task(s) for implementing the configuration model, including `.env`/`.env.example` and variable inventory.
 5. Conduct the interview using:
    - process rules in `docs/interview/INTERVIEW_PROCESS.md`
    - question sets in `docs/interview/QUESTION_SETS.md`

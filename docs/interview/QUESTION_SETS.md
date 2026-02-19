@@ -193,18 +193,21 @@ Goal: define platform, performance, reliability, and observability constraints.
 Primary questions:
 1. What environment constraints are fixed (OS, DB, host, runtime)?
 2. What secrets/config rules are mandatory?
-3. What reliability constraints must hold in production?
-4. What logs/metrics/traces are required for operations?
-5. What security/compliance requirements exist?
+3. What is the required environment variable contract for V1 (variable name, purpose, required vs optional, default, and secret handling)?
+4. What reliability constraints must hold in production?
+5. What logs/metrics/traces are required for operations?
+6. What security/compliance requirements exist?
 
 Follow-up triggers:
 1. If deployment is self-hosted, ask for web and worker service boundaries.
 2. If reliability claims are made, ask what exact mechanisms enforce them.
 3. If observability is required, ask for table/log destinations and fields.
+4. If `.env`/`.env.example` is used, ask which keys must appear in `.env.example` and what placeholder/value policy is required.
 
 Exit criteria:
 1. Ops constraints are concrete.
 2. Production safety model is explicit.
+3. Env/config contract includes a concrete V1 variable inventory and `.env.example` policy.
 
 ---
 
@@ -241,3 +244,4 @@ Run these at the end of each pass:
 5. Which purge path can break lineage?
 6. Which UI contract has no test expectation?
 7. Which open question blocks V1 start?
+8. Which required env variable has no owner, default/required classification, or implementation task?
