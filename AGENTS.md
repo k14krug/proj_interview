@@ -62,8 +62,13 @@ Terminology:
 
 ---
 
-## 5. Validation
-Run harness validation before and after substantial doc/workflow changes:
+## 5. New-Conversation Prep
+- Always read `docs/product/REQUIREMENTS.md`, `docs/workflow/TODO.md`, `docs/workflow/PROGRESS.md`, and `docs/architecture/AI_SPEC.md` (if it exists) before taking actions in a new conversation so you understand how the app was built.
+
+---
+
+## 6. Validation
+- Run harness validation before and after substantial doc/workflow changes:
 
 ```bash
 ./scripts/validate_docs.sh
