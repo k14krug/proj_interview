@@ -1,8 +1,8 @@
 # K2 Daily Brief — AGENTS.md
 
-Version: 2.1
-Last Updated: 2026-02-15
-Change Summary: Added `/INTERVIEW [ProjectName]` slash command entry point for running the documentation interview before implementation work.
+Version: 2.2
+Last Updated: 2026-03-26
+Change Summary: Added review-policy to the execution harness and made review-required completion an explicit invariant.
 
 ---
 
@@ -26,11 +26,12 @@ This file is the entry map for agent operation. Detailed policy lives in `docs/h
 1. `AGENTS.md` (entry map)
 2. `docs/harness/commands.md`
 3. `docs/harness/task-handshake.md`
-4. `docs/harness/testing-policy.md`
-5. `docs/harness/commit-policy.md`
-6. `docs/harness/maintenance.md`
-7. `docs/workflow/TODO.md`
-8. `docs/workflow/PROGRESS.md`
+4. `docs/harness/review-policy.md`
+5. `docs/harness/testing-policy.md`
+6. `docs/harness/commit-policy.md`
+7. `docs/harness/maintenance.md`
+8. `docs/workflow/TODO.md`
+9. `docs/workflow/PROGRESS.md`
 
 If docs conflict, the higher item in Product Authority wins unless explicitly overridden by the user.
 
@@ -59,16 +60,12 @@ Terminology:
 - UTC timestamps in storage.
 - V1 scope discipline (no Phase 2 implementation in V1 paths).
 - Background-job safety rules from `docs/architecture/JOB_EXECUTION_SEMANTICS.md`.
+- Review-required tasks must satisfy `docs/harness/review-policy.md` before final completion.
 
 ---
 
-## 5. New-Conversation Prep
-- Always read `docs/product/REQUIREMENTS.md`, `docs/workflow/TODO.md`, `docs/workflow/PROGRESS.md`, and `docs/architecture/AI_SPEC.md` (if it exists) before taking actions in a new conversation so you understand how the app was built.
-
----
-
-## 6. Validation
-- Run harness validation before and after substantial doc/workflow changes:
+## 5. Validation
+Run harness validation before and after substantial doc/workflow changes:
 
 ```bash
 ./scripts/validate_docs.sh

@@ -29,13 +29,19 @@ Preconditions:
 Execution:
 1. Read task context first.
 2. Mark task `[/]` when work starts.
-3. Implement only scoped changes.
-4. Add/update tests when behavior changes and is testable.
-5. If `Route Links` contains `RT-*`, implement semantics from `docs/architecture/ROUTES_V1.md` and UI behavior from `docs/architecture/UI_V1.md`, then add/update integration tests.
-6. Run relevant tests or record why tests were not run.
-7. Create one local scoped commit for the task's completed work using header format from `docs/harness/commit-policy.md` (for example: `feat(PH-XX-YY): ...`). This commit is required before marking the task `[x]`.
-8. Update `docs/workflow/TODO.md` and append log entry in `docs/workflow/PROGRESS.md`.
-9. Mark task `[x]` on success or `[!]` on blocker.
+3. Determine whether the task is review-required using `docs/harness/review-policy.md`.
+4. Implement only scoped changes.
+5. Add/update tests when behavior changes and is testable.
+6. If `Route Links` contains `RT-*`, implement semantics from `docs/architecture/ROUTES_V1.md` and UI behavior from `docs/architecture/UI_V1.md`, then add/update integration tests.
+7. Run relevant tests or record why tests were not run.
+8. If the task is review-required, run a reviewer pass using `docs/harness/review-policy.md` before final completion.
+9. If reviewer disposition is `FAIL`, do not mark the task complete:
+   - resolve blocker findings, or
+   - mark task `[!]` with blocker detail and concrete unblock condition.
+10. If reviewer disposition is `PASS WITH GAPS`, record the gaps in `docs/workflow/PROGRESS.md` and add follow-up task(s) to `docs/workflow/TODO.md` when required.
+11. Create one local scoped commit for the task's completed work using header format from `docs/harness/commit-policy.md` (for example: `feat(PH-XX-YY): ...`). This commit is required before marking the task `[x]`.
+12. Update `docs/workflow/TODO.md` and append log entry in `docs/workflow/PROGRESS.md`.
+13. Mark task `[x]` on success or `[!]` on blocker.
 
 If any precondition fails, stop and report the issue.
 
@@ -64,16 +70,24 @@ Execution:
    - Produce explicit preflight questions for anything ambiguous or contradictory, and ask the user before starting task execution.
    - If no questions are needed, state that no preflight questions were found and proceed.
 3. Execute tasks in ascending task ID order (`PH-XX-01`, `PH-XX-02`, ...).
-4. For each task, follow `/TASK` rules exactly (status transitions, route/UI semantics, tests, local commit requirement, and progress logging).
+4. For each task, follow `/TASK` rules exactly (status transitions, review-policy trigger, route/UI semantics, tests, local commit requirement, and progress logging).
 5. After each task:
    - Continue on success.
    - Confirm a local commit was created for each task marked `[x]` before moving to the next task.
+   - If the task was review-required, confirm reviewer disposition was `PASS` or `PASS WITH GAPS` before moving to the next task.
    - Stop phase execution on `[!]` blocked status and report blocker with concrete unblock condition.
 6. On completion, provide a phase summary:
    - tasks completed
    - tasks blocked
+   - review-required tasks reviewed
    - tests run / not run
+   - follow-up tasks created
    - next actionable task ID
+7. End with a phase-end review summary covering:
+   - cross-task drift
+   - dependency issues discovered during execution
+   - recurring technical debt or test gaps
+   - recommended follow-up tasks
 
 Resume behavior:
 1. Re-running `/PHASE [XX]` skips `[x]` tasks automatically.
